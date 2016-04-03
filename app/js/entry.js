@@ -1,0 +1,1 @@
+var exampleModule = require('./_modules/exampleModule.js');
