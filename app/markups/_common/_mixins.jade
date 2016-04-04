@@ -1,0 +1,11 @@
+//- Navigation block
+mixin nav(params)
+	nav.nav
+		.container
+			ul.nav__list
+				each item in params
+					li.nav__item
+						if item == active
+							a.nav__link(href="#" class="nav__link_active") #{item}
+						else
+							a(href="#").nav__link #{item}
