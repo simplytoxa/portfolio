@@ -26,8 +26,7 @@ var gulp            = require('gulp'),
       jade: 'app/markups/**/*.jade',
       jadeSrc: 'app/markups/_pages/*.jade',
       jadeDest: 'app/',
-      scss: 'app/scss/**/*.scss',
-      sassSrc: 'app/scss/main.scss',
+      sassSrc: 'app/scss/**/*.scss',
       sassDest: 'app/css/',
       browserifySrc: './app/js/entry.js',
       browserifyDest:'./app/js/',
@@ -186,7 +185,7 @@ gulp.task('serve', function() {
 // =============================================
 gulp.task('watch', function() {
   gulp.watch(path.jade, gulp.series('jade'));
-  gulp.watch(path.scss, gulp.series('sass'));
+  gulp.watch(path.sassSrc, gulp.series('sass'));
   gulp.watch(path.spritesSrc, gulp.series('sprites'));
   gulp.watch(path.js, gulp.series('scripts', 'lint'));
 });
