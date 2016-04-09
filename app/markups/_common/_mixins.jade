@@ -18,3 +18,11 @@ mixin nav(params)
 							a.nav__link(href="#" class="nav__link_active") #{item}
 						else
 							a(href="#").nav__link #{item}
+							
+//- Socials
+mixin socials(socials)
+  ul.socials__list
+    each val, index in socials
+      li.socials__item
+        a(href=val, class="socials__link_#{index}", target="_blank").socials__link
+        span.text-hide= index
