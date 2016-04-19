@@ -179,7 +179,7 @@ gulp.task('serve', function() {
     server: "app/"
   });
 
-  browserSync.watch(['./app/**/*.js', './app/**/*.html', '!**/*.scss', './app/img/icons/'], browserSync.reload);
+  browserSync.watch(['./app/js/bundle.js', './app/**/*.html', '!**/*.scss', './app/img/icons/'], browserSync.reload);
 });
 
 // =============================================

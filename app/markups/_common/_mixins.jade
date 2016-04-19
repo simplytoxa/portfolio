@@ -1,24 +1,24 @@
 //- Breadcrumbs block
 mixin breadcrumbs(params)
-	.breadcrumbs
-		.container
-			ul.breadcrumbs__list
-				each item, ndx in params
-					li.breadcrumbs__item
-						a(href="#" class="#{ndx == params.length - 1 ? 'breadcrumbs__item_active' : ''}").breadcrumbs__link= item
+  .breadcrumbs
+    .container
+      ul.breadcrumbs__list
+        each item, ndx in params
+          li.breadcrumbs__item
+            a(href="#" class="#{ndx == params.length - 1 ? 'breadcrumbs__item_active' : ''}").breadcrumbs__link= item
 
 //- Navigation block
 mixin nav(params)
-	nav.nav
-		.container
-			ul.nav__list
-				each item in params
-					li.nav__item
-						if item == active
-							a.nav__link(href="#" class="nav__link_active") #{item}
-						else
-							a(href="#").nav__link #{item}
-							
+  nav.nav
+    .container
+      ul.nav__list
+        each item in params
+          li.nav__item
+            if item == active
+              a.nav__link(href="#" class="nav__link_active") #{item}
+            else
+              a(href="#").nav__link #{item}
+              
 //- Socials
 mixin socials(socials)
   ul.socials__list
