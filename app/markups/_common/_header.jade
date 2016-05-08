@@ -1,12 +1,43 @@
 header.header
-  .container
+  .left-arrow
+  .left-arrow-t
+  .right-arrow
+  .right-arrow-t
+  nav.row.menu
+    .menu-left
+      ul.menu__list
+        li.menu-left__item
+          a.menu__link(href="#portfolio") 
+            i(aria-hidden="true").fa.fa-television
+            span.menu__text Portfolio
+        li.menu-left__item
+          a.menu__link(href="http://www.apnweb.ru") 
+            i(aria-hidden="true").fa.fa-home
+            span.menu__text Home
     .logo
-      a(href="#").logo__link
-        img(src="img/logo.jpg", alt="logo").logo-img
-    .skills
-      ul.skills__list
-        li.skills__item html
-        li.skills__item css
-        li.skills__item javascript
-    .btn
-      a(href="#").btn__link enter
+      img(src="img/logo.jpg", alt="logo").logo-img
+    .menu-right
+      ul.menu__list
+        li.menu-right__item
+          a.menu__link(href="#about") 
+            i(aria-hidden="true").fa.fa-user
+            span.menu__text About
+        li.menu-right__item
+          a.menu__link(href="#contact") 
+            i(aria-hidden="true").fa.fa-envelope
+            span.menu__text Contact
+    .menu-small
+      ul.menu-small__list
+        li.menu-small__item
+          a.menu-small__link(href="#portfolio")
+            i(aria-hidden="true").fa.fa-television
+            span.menu__text Portfolio
+        li.menu-small__item
+          a.menu-small__link(href="#about")
+            i(aria-hidden="true").fa.fa-user
+            span.menu__text About
+        li.menu-small__item
+          a.menu-small__link(href="#contact")
+            i(aria-hidden="true").fa.fa-envelope
+            span.menu__text Contact
+

@@ -48,7 +48,7 @@ var gulp            = require('gulp'),
 gulp.task('jade', function() {
   var YOUR_LOCALS = {};
  
-  gulp.src(path.jadeSrc)
+  return gulp.src(path.jadeSrc)
       .pipe(jade({
         locals: YOUR_LOCALS,
         pretty: '\t'
@@ -60,7 +60,7 @@ gulp.task('jade', function() {
 // === Sass
 // =============================================
 gulp.task('sass', function() {
-  gulp.src(path.sassSrc)
+  return gulp.src(path.sassSrc)
       .pipe(sourcemaps.init())
       .pipe(sassGlob())
       .pipe(sass()).on('error', notify.onError())
