@@ -22,7 +22,7 @@ var gulp            = require('gulp'),
     path = {
       html: 'app/*.html',
       css:  'app/**/*.css',
-      js: 'app/js/**/*.js',
+      js: 'app/js/_modules/*.js',
       jade: 'app/markups/**/*.jade',
       jadeSrc: 'app/markups/_pages/*.jade',
       jadeDest: 'app/',
@@ -94,7 +94,7 @@ gulp.task('sprites', function() {
 // =============================================
 gulp.task('lint', function() {
     
-    return gulp.src(['**/*.js','!node_modules/**'])
+    return gulp.src(['./js/**/*.js','!node_modules/**'])
         .pipe(eslint()) 
         .pipe(eslint.format()) 
         .pipe(eslint.failAfterError());
@@ -140,12 +140,12 @@ gulp.task('clean', function () {
 // === Browserify JS
 // =============================================
 gulp.task('scripts', function() {
-  gulp.src(path.browserifySrc)
+  return gulp.src(path.browserifySrc)
 
       .pipe(browserify({
         debug : true // Maps
       })).on('error', notify.onError())
-      .pipe(rename('bundle.js'))
+      .pipe(rename('bundle.min.js'))
       .pipe(gulp.dest(path.browserifyDest));
 });
 
@@ -155,7 +155,6 @@ gulp.task('scripts', function() {
 gulp.task('js:compress', function() {
   return gulp.src(path.build.compressedSrc)
     .pipe(uglify())
-    .pipe(rename({suffix: ".min"}))
     .pipe(gulp.dest(path.build.compressedJS));
 });
 
@@ -179,7 +178,7 @@ gulp.task('serve', function() {
     server: "app/"
   });
 
-  browserSync.watch(['./app/js/bundle.js', './app/**/*.html', '!**/*.scss', './app/img/icons/'], browserSync.reload);
+  browserSync.watch(['./app/js/bundle.min.js', './app/**/*.html', '!**/*.scss', './app/img/icons/'], browserSync.reload);
 });
 
 // =============================================

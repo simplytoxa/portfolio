@@ -8,7 +8,6 @@ head
   meta(name="viewport", content="width=device-width, initial-scale=1")
   // CSS
   link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css")
-  link(href='https://fonts.googleapis.com/css?family=Dosis:400,600', rel='stylesheet', type='text/css')
   link(rel="stylesheet", href="css/main.css")
   <!--[if lt IE 9]>
   script(src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js")
@@ -24,10 +23,12 @@ body
     a(href="http://browsehappy.com/") обновите его
   <![endif]-->
   include _common/_header
+  include _common/_intro
+  include _common/_portfolio
 
 
 
 
   // JS
   script(src="./bower/jquery/dist/jquery.min.js")
-  script(src="./js/bundle.js")
+  script(src="./js/bundle.min.js")

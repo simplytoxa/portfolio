@@ -1,0 +1,52 @@
+.intro{
+  font-family: 'Dosis', sans-serif;
+  padding-bottom: 50px;
+  background: url('../img/header-bottom.png') no-repeat center bottom;
+}
+.intro__title{
+  background: url('../img/header-line2.png') repeat-x left bottom;
+  height: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+  @extend .medium-12, .columns;
+}
+.intro__greet{
+  margin: 0;
+  padding: 0;
+  @include font-size(100);
+  background: url('../img/bg.png') repeat;
+  position: relative;
+  bottom: 42px;
+  display: inline-block;
+  font-family: 'Cookie', cursive;
+  color: #737373;
+  text-shadow: 0px 2px 0px rgba(255, 255, 255, 1);
+  font-weight: 400;
+}
+.intro__content{
+  color: #737373;
+  @extend .medium-12, .columns;
+}
+.intro__text1{
+  @include font-size(26);
+  text-align: center;
+  text-transform: uppercase;
+}
+.intro__text2{
+  @include font-size(50);
+  font-family: 'dosissemibold';
+  text-align: center;
+  text-transform: uppercase;
+  color: #109f9a;
+}
+.intro__text3{
+  @include font-size(28);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+
+
+
+
+
