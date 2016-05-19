@@ -1,0 +1,10 @@
+.back-to-top{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: #696969 url(../img/back-to-top.png) no-repeat;
+  width: 56px;
+  height: 56px;
+  z-index: 5;
+  // display: none;
+}

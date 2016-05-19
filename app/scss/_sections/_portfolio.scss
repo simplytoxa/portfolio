@@ -1,0 +1,47 @@
+.portfolio>.row{
+  margin-bottom: 70px;
+}
+
+.portfolio-top{
+  border-bottom: 1px solid #c9c9c9;
+  @extend %clearfix;
+  
+}
+
+.portfolio-top__icon{
+  background: url(../img/bg.png) repeat;
+  position: relative;
+  top: 10px;
+  padding: 0 15px;
+  @include font-size(14);
+}
+.portfolio-top__title{
+  background: url(../img/bg.png) repeat;
+  position: relative;
+  top: 13px;
+  padding-left: 10px;
+  text-transform: uppercase;
+  float: right;
+  @include font-size(16);
+  letter-spacing: 4px;
+}
+
+.showcase{
+  opacity: 0;
+  padding: 10px 0;
+  border-top: 1px solid #8e8e8e;
+  border-bottom: 1px solid #8e8e8e;
+  margin-top: 70px;
+}
+.inner-showcase{
+  background: url(../img/showcase-bg.png) repeat;
+  min-height: 480px;
+  display: none;
+  -webkit-box-shadow: inset 1px 5px 5px 3px rgba(0,0,0,0.5);
+  -moz-box-shadow: inset 1px 5px 5px 3px rgba(0,0,0,0.5);
+  box-shadow: inset 1px 5px 5px 3px rgba(0,0,0,0.5);
+}
+.showcase__close{
+  @include abs-pos($top: -10px, $right: 15px);
+  color: #109f9a;
+}
