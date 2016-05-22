@@ -1,0 +1,77 @@
+.contact{
+  
+}
+.contact-top{
+  @extend .portfolio-top;
+  margin-bottom: 50px;
+}
+.contact-top__icon{
+  @extend .portfolio-top__icon;
+}
+.contact-top__title{
+  @extend .portfolio-top__title;
+}
+
+
+.envelope {
+  background: #fbfbfb;
+  padding: 10px;
+  min-height: 323px;
+  text-align: center;
+}
+.envelope__title{
+  @include font-size(26);
+  font-weight: normal;
+  color: #5c5c5c;
+  text-transform: uppercase;
+}
+.envelope__line{
+  border-top: 1px solid #737373;
+  margin-top: 0;
+  height: 1px;
+}
+.envelope__ampersand{
+  position: relative;
+  bottom: 15px;
+  background: #fbfbfb;
+}
+.envelope__title-sub{
+  @include font-size(20);
+  text-transform: uppercase;
+}
+
+
+.socials__list{
+  font-size: 0;
+}
+.socials__item{
+  @include inline-block(middle);
+  margin-left: 15px;
+
+  &:first-child{
+    margin-left: 0;
+  }
+}
+.socials__link{
+  width: 72px;
+  height: 72px;
+  display: block;
+  background: black;
+  transition: all 0.7s ease-out;
+  @include border-radius(5px)
+
+  &:hover{
+    background: white;
+
+    .socials__icon{
+      color: black;
+      transition: all 0.5s ease-out;
+    }
+  }
+}
+.socials__icon{
+  @include font-size(40);
+  @extend %align-v;
+  display: inline;
+  color: white;
+}

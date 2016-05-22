@@ -1,0 +1,16 @@
+section.contact
+  .row
+    .contact-top
+      i.fa.fa-envelope(aria-hidden='true').contact-top__icon
+      .about-top__title Contact
+    .medium-12.columns
+      .envelope
+        h3.envelope__title Mail me
+        .envelope__line
+         span.envelope__ampersand &
+        .envelope__title-sub Find me on social networks
+        .medium-10.small-centered
+          - var socials = {envelope: 'mailto: toxa.simply@gmail.com', vk: 'https://new.vk.com/simplytoxa', github: 'https://github.com/simplytoxa'}
+          +socials(socials)
+        .envelope__note
+          | Always interested in new projects, Just Send me an email and I'll get back to your inquiry ASAP.

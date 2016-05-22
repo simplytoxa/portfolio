@@ -47,6 +47,8 @@ li{
 //-------------------------------------------
 h1, h2, h3, h4, h5, h6{
   font: inherit;
+  font-family: "Dosis", sans-serif;
+  color: #737373;
 }
 
 textarea, select{
@@ -86,8 +88,13 @@ body{
   font-family: "Dosis", sans-serif !important;
   color: #737373 !important;
 }
-
-h2, h3, h4, h5, h6 {
-  font-family: "Dosis", sans-serif;
-  color: #737373;
+.text-hide{
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }

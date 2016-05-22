@@ -47,3 +47,13 @@
   }
 }
 
+
+// ------------------------------------------
+  // align-v-flex
+//-------------------------------------------
+%flex-va{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

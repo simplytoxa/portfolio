@@ -12,7 +12,6 @@ var gulp            = require('gulp'),
     autoprefixer    = require('autoprefixer'),
     postcss         = require('gulp-postcss'),
     notify          = require("gulp-notify"),
-    rename          = require("gulp-rename"),
     csso            = require('gulp-csso'),
     del             = require('del'),
     uglify          = require('gulp-uglify'),
@@ -194,7 +193,7 @@ gulp.task('watch', function() {
 // =============================================
 // === Default
 // =============================================
-gulp.task('default', gulp.parallel('serve', 'watch'));
+gulp.task('default', gulp.series('jade', 'sass', 'scripts', 'sprites', 'serve', 'watch'));
 
 
 

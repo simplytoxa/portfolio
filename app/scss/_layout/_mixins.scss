@@ -106,3 +106,13 @@ The `sprites` mixin generates identical output to the CSS template
   font-size: $sizeValue + px; //fallback for old browsers
   font-size: ($sizeValue / 16) + rem;
 }
+
+/**
+ * Inline-block mixin
+ */
+@mixin inline-block($alignment){
+  display: inline-block;
+  @if $alignment and $alignment != none {
+    vertical-align: $alignment;
+  }
+}

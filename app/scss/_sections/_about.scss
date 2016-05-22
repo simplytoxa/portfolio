@@ -1,9 +1,23 @@
-.about-title{
-  
+.about{
+  margin-bottom: 100px;
+}
+.about-top{
+  @extend .portfolio-top;
+  margin-bottom: 50px;
 }
 .about-top__icon{
   @extend .portfolio-top__icon;
 }
 .about-top__title{
   @extend .portfolio-top__title;
+}
+.about__title{
+  @include font-size(26);
+  font-weight: normal;
+  color: #109f9a;
+  margin-top: 50px;
+}
+.about__text{
+  color: #737373;
+  @include font-size(18);
 }
