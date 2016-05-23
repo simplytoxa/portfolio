@@ -193,7 +193,7 @@ gulp.task('watch', function() {
 // =============================================
 // === Default
 // =============================================
-gulp.task('default', gulp.series('jade', 'sass', 'scripts', 'sprites', 'serve', 'watch'));
+gulp.task('default', gulp.series('jade', 'sass', 'scripts', 'sprites', gulp.parallel('watch', 'serve')));
 
 
 

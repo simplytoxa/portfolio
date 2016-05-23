@@ -68,6 +68,8 @@
   &:hover{
     color: #fff;
     background: #3a3a3a;
+    transition: all ease-out 0.6s;
+    @include border-radius(5px);
   }
 }
 

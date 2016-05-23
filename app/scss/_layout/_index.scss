@@ -2,9 +2,17 @@
   position: fixed;
   right: 20px;
   bottom: 20px;
-  background: #696969 url(../img/back-to-top.png) no-repeat;
+  background: url(../img/back-to-top.png) no-repeat;
+  background-color: #696969;
   width: 56px;
   height: 56px;
   z-index: 5;
-  // display: none;
+  color: #fff;
+  display: none;
+  border-radius: 5px;
+  
+  &:hover{
+    background-color: shade(#696969, 70%);
+    transition: all 0.3s;
+  }
 }

@@ -58,7 +58,7 @@
   display: block;
   background: black;
   transition: all 0.7s ease-out;
-  @include border-radius(5px)
+  @include border-radius(5px);
 
   &:hover{
     background: white;

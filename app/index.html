@@ -13,7 +13,7 @@
 </head>
 <body><!--[if lt IE 7]>
 	<p class="browsehappy">Вы используете<strong>устаревший</strong>браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p><![endif]-->
-	<header class="header">
+	<header id="head" class="header">
 		<div class="left-arrow"></div>
 		<div class="left-arrow-t"></div>
 		<div class="right-arrow"></div>
@@ -40,7 +40,7 @@
 				</ul>
 			</div>
 		</nav>
-	</header><a class="to-top-btn">
+	</header><a href="#head" class="to-top-btn">
 		<div id="back-to-top" class="back-to-top"></div></a>
 	<main class="main">
 		<section id="intro" class="intro">
@@ -55,7 +55,7 @@
 				</div>
 			</div>
 		</section>
-		<section class="portfolio">
+		<section id="portfolio" class="portfolio">
 			<div class="row">
 				<div class="medium-12 columns">
 					<div class="portfolio-top"><i aria-hidden="true" class="fa fa-television portfolio-top__icon"></i>
@@ -83,7 +83,7 @@
 				</div>
 			</div>
 		</section>
-		<section class="about">
+		<section id="about" class="about">
 			<div class="row">
 				<div class="medium-12 columns">
 					<div class="about-top"><i aria-hidden="true" class="fa fa-child about-top__icon"></i>
@@ -100,7 +100,7 @@
 				</div>
 			</div>
 		</section>
-		<section class="contact">
+		<section id="contact" class="contact">
 			<div class="row">
 				<div class="contact-top"><i aria-hidden="true" class="fa fa-envelope contact-top__icon"></i>
 					<div class="about-top__title">Contact</div>
@@ -122,6 +122,7 @@
 				</div>
 			</div>
 		</section>
+		<footer class="footer"></footer>
 	</main>
 	<!-- JS-->
 	<script src="./bower/jquery/dist/jquery.min.js"></script>
