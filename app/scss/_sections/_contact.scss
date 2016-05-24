@@ -39,8 +39,14 @@
   @include font-size(20);
   text-transform: uppercase;
 }
+.envelope-top{
+  margin-bottom: 50px;
+}
 
 
+.socials{
+  margin-bottom: 50px;
+}
 .socials__list{
   font-size: 0;
 }
@@ -74,4 +80,21 @@
   @extend %align-v;
   display: inline;
   color: white;
+}
+
+
+.form{
+  font-family: 'Dosis', sans-serif;
+  color: #737373;
+}
+.form__label{
+  @include font-size(16);
+  margin-left: 10px;
+}
+.form__input{
+  @include font-size(14);
+}
+.form__textarea{
+  resize: none;
+  color: #737373;
 }

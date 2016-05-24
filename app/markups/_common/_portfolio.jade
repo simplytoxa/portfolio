@@ -10,23 +10,28 @@ section.portfolio#portfolio
         .medium-12.columns
           a.showcase__close#close
             img(src="img/close.jpg", alt="close-button")
-          .showcase__content
-      .row.works
-        .medium-12.columns
-          ul.works__list
-            li.works__item
-              a(href="")
-                span.thumb
-                  img(src="", alt="")
-            li.works__item
-              a(href="")
-                span.thumb
-                  img(src="", alt="")
-            li.works__item
-              a(href="")
-                span.thumb
-                  img(src="", alt="")
-            li.works__item
-              a(href="")
-                span.thumb
-                  img(src="", alt="")
+          .showcase__content.columns.medium-7
+            img(src="./img/shop.jpg").showcase__img
+          .columns.medium-4
+            h3.work-title Shop
+            p.work-text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur voluptates obcaecati distinctio dignissimos, dicta dolorum molestiae illo numquam, nam, esse minus. Eius magni dolorem fugiat commodi totam, sint illo incidunt?
+            a.visit-btn Visit site
+  .row.works
+    .medium-12.columns
+      ul.works__list
+        li.works__item
+          a(href="#shop").works__link
+            .thumb
+              img(src="./img/shop-thumb.png", alt="shop-thumb").thumb__img
+        li.works__item
+          a(href="").works__link
+            .thumb
+              img(src="", alt="").thumb__img
+        li.works__item
+          a(href="").works__link
+            .thumb
+              img(src="", alt="").thumb__img
+        li.works__item
+          a(href="").works__link
+            .thumb
+              img(src="", alt="").thumb__img

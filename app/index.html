@@ -67,19 +67,27 @@
 				<div id="inner-showcase" class="inner-showcase">
 					<div class="row">
 						<div class="medium-12 columns"><a id="close" class="showcase__close"><img src="img/close.jpg" alt="close-button"></a>
-							<div class="showcase__content"></div>
+							<div class="showcase__content columns medium-7"><img src="./img/shop.jpg" class="showcase__img"></div>
+							<div class="columns medium-4">
+								<h3 class="work-title">Shop</h3>
+								<p class="work-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur voluptates obcaecati distinctio dignissimos, dicta dolorum molestiae illo numquam, nam, esse minus. Eius magni dolorem fugiat commodi totam, sint illo incidunt?</p><a class="visit-btn">Visit site</a>
+							</div>
 						</div>
 					</div>
-					<div class="row works">
-						<div class="medium-12 columns">
-							<ul class="works__list">
-								<li class="works__item"><a href=""><span class="thumb"><img src="" alt=""></span></a></li>
-								<li class="works__item"><a href=""><span class="thumb"><img src="" alt=""></span></a></li>
-								<li class="works__item"><a href=""><span class="thumb"><img src="" alt=""></span></a></li>
-								<li class="works__item"><a href=""><span class="thumb"><img src="" alt=""></span></a></li>
-							</ul>
-						</div>
-					</div>
+				</div>
+			</div>
+			<div class="row works">
+				<div class="medium-12 columns">
+					<ul class="works__list">
+						<li class="works__item"><a href="#shop" class="works__link">
+								<div class="thumb"><img src="./img/shop-thumb.png" alt="shop-thumb" class="thumb__img"></div></a></li>
+						<li class="works__item"><a href="" class="works__link">
+								<div class="thumb"><img src="" alt="" class="thumb__img"></div></a></li>
+						<li class="works__item"><a href="" class="works__link">
+								<div class="thumb"><img src="" alt="" class="thumb__img"></div></a></li>
+						<li class="works__item"><a href="" class="works__link">
+								<div class="thumb"><img src="" alt="" class="thumb__img"></div></a></li>
+					</ul>
 				</div>
 			</div>
 		</section>
@@ -105,12 +113,14 @@
 				<div class="contact-top"><i aria-hidden="true" class="fa fa-envelope contact-top__icon"></i>
 					<div class="about-top__title">Contact</div>
 				</div>
-				<div class="medium-12 columns">
+				<div class="medium-6 columns">
 					<div class="envelope">
-						<h3 class="envelope__title">Mail me</h3>
-						<div class="envelope__line"><span class="envelope__ampersand">&</span></div>
-						<div class="envelope__title-sub">Find me on social networks</div>
-						<div class="medium-10 small-centered">
+						<div class="envelope-top">
+							<h3 class="envelope__title">Mail me</h3>
+							<div class="envelope__line"><span class="envelope__ampersand">&</span></div>
+							<div class="envelope__title-sub">Find me on social networks</div>
+						</div>
+						<div class="medium-10 small-centered socials">
 							<ul class="socials__list">
 								<li class="socials__item"><a href="mailto: toxa.simply@gmail.com" target="_blank" class="socials__link_envelope socials__link"><i aria-hidden="true" class="fa socials__icon_envelope fa-envelope socials__icon"></i></a><span class="text-hide">envelope</span></li>
 								<li class="socials__item"><a href="https://new.vk.com/simplytoxa" target="_blank" class="socials__link_vk socials__link"><i aria-hidden="true" class="fa socials__icon_vk fa-vk socials__icon"></i></a><span class="text-hide">vk</span></li>
@@ -119,6 +129,16 @@
 						</div>
 						<div class="envelope__note">Always interested in new projects, Just Send me an email and I'll get back to your inquiry ASAP.</div>
 					</div>
+				</div>
+				<div class="medium-6 columns">
+					<form action="" id="form" class="form">
+						<label for="name" class="form__label">Name</label>
+						<input type="text" id="name" placeholder="Enter your name" class="form__input">
+						<label for="email" class="form__label">Email</label>
+						<input type="email" id="email" placeholder="Enter your email" class="form__input">
+						<label for="message" class="form__label">Message</label>
+						<textarea name="message" cols="30" rows="10" id="textarea" form="form" placeholder="I'm waiting for some words from you..." class="form__textarea"></textarea>
+					</form>
 				</div>
 			</div>
 		</section>
