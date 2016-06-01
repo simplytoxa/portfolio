@@ -16,3 +16,12 @@
     transition: all 0.3s;
   }
 }
+
+@include scrollbars(0.7em, #696969);
+
+.main{
+  margin-bottom: 200px;
+  z-index: 2;
+  position: relative;
+  background: url('../img/bg.png') repeat !important;
+}

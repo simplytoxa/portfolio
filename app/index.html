@@ -44,7 +44,7 @@
 		<div id="back-to-top" class="back-to-top"></div></a>
 	<main class="main">
 		<section id="intro" class="intro">
-			<div class="row">
+			<div class="row intro__wrap">
 				<div class="intro__title">
 					<div class="intro__greet">Hello</div>
 				</div>
@@ -52,6 +52,15 @@
 					<div class="intro__text1"></div>
 					<div class="intro__text2"></div>
 					<div class="intro__text3"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="intro__img-wrap">
+					<div class="img"></div>
+					<div class="bag"></div>
+					<div class="boots"></div>
+					<div class="phone"></div>
+					<div class="pencil"></div>
 				</div>
 			</div>
 		</section>
@@ -67,10 +76,11 @@
 				<div id="inner-showcase" class="inner-showcase">
 					<div class="row">
 						<div class="medium-12 columns"><a id="close" class="showcase__close"><img src="img/close.jpg" alt="close-button"></a>
-							<div class="showcase__content columns medium-7"><img src="./img/shop.jpg" class="showcase__img"></div>
+							<figure class="showcase__content columns medium-7"><a href="" class="link"><img src="" id="img" class="showcase__img">
+									<figcapture id="figcapture" class="showcase__figcapture"></figcapture></a></figure>
 							<div class="columns medium-4">
-								<h3 class="work-title">Shop</h3>
-								<p class="work-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur voluptates obcaecati distinctio dignissimos, dicta dolorum molestiae illo numquam, nam, esse minus. Eius magni dolorem fugiat commodi totam, sint illo incidunt?</p><a class="visit-btn">Visit site</a>
+								<h3 id="title" class="work-title"></h3>
+								<p id="text" class="work-text"></p><a href="" class="visit-btn link">Visit site</a>
 							</div>
 						</div>
 					</div>
@@ -81,11 +91,11 @@
 					<ul class="works__list">
 						<li class="works__item"><a href="#shop" class="works__link">
 								<div class="thumb"><img src="./img/shop-thumb.png" alt="shop-thumb" class="thumb__img"></div></a></li>
-						<li class="works__item"><a href="" class="works__link">
+						<li class="works__item"><a href="#ipadApps" class="works__link">
 								<div class="thumb"><img src="" alt="" class="thumb__img"></div></a></li>
-						<li class="works__item"><a href="" class="works__link">
+						<li class="works__item"><a href="#ostrov" class="works__link">
 								<div class="thumb"><img src="" alt="" class="thumb__img"></div></a></li>
-						<li class="works__item"><a href="" class="works__link">
+						<li class="works__item"><a href="#generator" class="works__link">
 								<div class="thumb"><img src="" alt="" class="thumb__img"></div></a></li>
 					</ul>
 				</div>
@@ -132,18 +142,30 @@
 				</div>
 				<div class="medium-6 columns">
 					<form action="" id="form" class="form">
-						<label for="name" class="form__label">Name</label>
-						<input type="text" id="name" placeholder="Enter your name" class="form__input">
-						<label for="email" class="form__label">Email</label>
-						<input type="email" id="email" placeholder="Enter your email" class="form__input">
-						<label for="message" class="form__label">Message</label>
-						<textarea name="message" cols="30" rows="10" id="textarea" form="form" placeholder="I'm waiting for some words from you..." class="form__textarea"></textarea>
+						<div class="input-wrap">
+							<label for="name" class="form__label">Name</label>
+							<input type="text" id="name" placeholder="Enter your name" data-tooltip="How can I call You?" class="form__input">
+						</div>
+						<div class="input-wrap">
+							<label for="email" class="form__label">Email</label>
+							<input type="email" id="email" placeholder="Enter your email" data-tooltip="What about Email?" class="form__input">
+						</div>
+						<div class="input-wrap">
+							<label for="message" class="form__label">Message</label>
+							<textarea name="message" cols="30" rows="10" id="textarea" form="form" placeholder="I'm waiting for some words from you..." data-tooltip="I'm waiting for your message..." class="form__textarea"></textarea>
+						</div>
+						<button type="submit" name="button" form="form" class="form__btn form__btn-submit">Send</button>
+						<button type="reset" name="button" form="form" class="form__btn form__btn-reset">Reset</button>
 					</form>
 				</div>
 			</div>
 		</section>
-		<footer class="footer"></footer>
 	</main>
+	<footer class="footer">
+		<div class="row">
+			<div class="footer__content">2016. This is my page. Please copy it if you want or even if you don't want. You should...</div>
+		</div>
+	</footer>
 	<!-- JS-->
 	<script src="./bower/jquery/dist/jquery.min.js"></script>
 	<script src="./js/bundle.min.js"></script>

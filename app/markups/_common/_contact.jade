@@ -17,9 +17,15 @@ section.contact#contact
           | Always interested in new projects, Just Send me an email and I'll get back to your inquiry ASAP.
     .medium-6.columns
       form(action="", id="form").form
-        label(for="name").form__label Name
-        input(type="text", id="name", placeholder="Enter your name").form__input
-        label(for="email").form__label Email
-        input(type="email", id="email", placeholder="Enter your email").form__input
-        label(for="message").form__label Message
-        textarea(name="message", cols="30", rows="10", id="textarea" form="form" placeholder="I'm waiting for some words from you...").form__textarea
+        .input-wrap
+          label(for="name").form__label Name
+          input(type="text", id="name", placeholder="Enter your name", data-tooltip="How can I call You?").form__input
+        .input-wrap
+          label(for="email").form__label Email
+          input(type="email", id="email", placeholder="Enter your email" data-tooltip="What about Email?").form__input
+        .input-wrap
+          label(for="message").form__label Message
+          textarea(name="message", cols="30", rows="10", id="textarea" form="form" placeholder="I'm waiting for some words from you..." data-tooltip="I'm waiting for your message...").form__textarea
+        button(type="submit", name="button", form="form").form__btn.form__btn-submit Send
+        button(type="reset", name="button", form="form").form__btn.form__btn-reset Reset
+

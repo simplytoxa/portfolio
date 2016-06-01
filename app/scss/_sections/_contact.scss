@@ -1,5 +1,5 @@
 .contact{
-  
+  margin-bottom: 100px;
 }
 .contact-top{
   @extend .portfolio-top;
@@ -63,12 +63,14 @@
   height: 72px;
   display: block;
   background: black;
-  transition: all 0.7s ease-out;
+  transition: all 0.3s ease-in-out;
   @include border-radius(5px);
 
   &:hover{
     background: white;
-
+    box-shadow: 7px 8px 7px rgba(1, 1, 1, 0.5);
+    transform: scale(1.1);
+    
     .socials__icon{
       color: black;
       transition: all 0.5s ease-out;
@@ -97,4 +99,57 @@
 .form__textarea{
   resize: none;
   color: #737373;
+}
+.input-wrap{
+  position: relative;
+}
+.tooltip-wrap{
+  position: absolute;
+  left: 50%;
+  top: -17px;
+  transform: translateX(-50%);
+}
+.tooltip{
+  color: white;
+  padding: 5px 10px;
+  background: black;
+  @include border-radius(5px);
+  position: relative;
+
+  &:after{
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -10px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 7.5px 0 7.5px;
+    border-color: #000000 transparent transparent transparent;
+  }
+}
+.form__btn{
+  height: 40px;
+  width: 233px;
+  color: #fff;
+  border-radius: 5px;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+
+  &:hover{
+    box-shadow: 7px 11px 7px rgba(1, 1, 1, 0.5);
+    transform: scale(1.025);
+  }
+}
+.form__btn-submit{
+  background: #109F9A;
+}
+.form__btn-reset{
+  background: #000;
+}
+
+.empty-field{
+  border-color: #f00;
+  background-color: rgba(255, 224, 224, 0.9);
 }

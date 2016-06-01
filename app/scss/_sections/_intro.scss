@@ -2,7 +2,10 @@
   font-family: 'Dosis', sans-serif;
   padding-bottom: 50px;
   background: url('../img/header-bottom.png') no-repeat center bottom;
-  margin-bottom: 400px;
+  margin-bottom: 100px;
+}
+.intro__wrap{
+  height: 306px;
 }
 .intro__title{
   background: url('../img/header-line2.png') repeat-x left bottom;
@@ -27,6 +30,8 @@
 .intro__content{
   color: #737373;
   @extend .medium-12, .columns;
+  margin-bottom: 50px;
+  @extend %clearfix;
 }
 .intro__text1{
   @include font-size(26);
@@ -46,8 +51,46 @@
   text-transform: uppercase;
 }
 
-
-
-
-
-
+.intro__img-wrap{
+  position: relative;
+  overflow: hidden;
+}
+.img{
+  background: url('/img/workflow.jpg') center center no-repeat;
+  background-size: cover;
+  // background-attachment: fixed;
+  width: 100%;
+  height: 680px;
+}
+.bag{
+  background: url('/img/bag.png') left top no-repeat;
+  width: 100%;
+  height: 152px;
+  position: absolute;
+  top: 0;
+  left: 85px;
+}
+.boots{
+  background: url('/img/boots.png') center right no-repeat;
+  width: 100%;
+  height: 137px;
+  position: absolute;
+  top: 180px;
+  right: 0;
+}
+.phone{
+  background: url('/img/phone.png') left bottom no-repeat;
+  width: 100%;
+  height: 86px;
+  position: absolute;
+  bottom: 190px;
+  left: 305px;
+}
+.pencil{
+  background: url('/img/pencil.png') center bottom no-repeat;
+  width: 100%;
+  height: 86px;
+  position: absolute;
+  bottom: 200px;
+  left: 130px;
+}

@@ -27,7 +27,7 @@
 }
 
 .showcase{
-  // display: none;
+  display: none;
   padding: 10px 0;
   border-top: 1px solid #8e8e8e;
   border-bottom: 1px solid #8e8e8e;
@@ -35,13 +35,41 @@
 }
 .inner-showcase{
   background: url(../img/showcase-bg.png) repeat;
-  height: 480px;
+  height: 500px;
   position: relative;
   padding-top: 30px;
   box-shadow: inset 1px 5px 5px 3px rgba(0,0,0,0.5);
 }
+.showcase__content{
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+
+  &:hover{
+    .showcase__figcapture{
+      transform: translateY(0px);
+    }
+    .showcase__img{
+      transform: scale(1.025);
+    }
+  }
+}
 .showcase__img{
   box-shadow: 1px 5px 5px 0px rgba(0,0,0,0.5);
+  display: block;
+  transition: all 0.5s ease-in-out;
+}
+.showcase__figcapture{
+  position: absolute;
+  padding: 20px 50px;
+  width: 100%;
+  height: 40%;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  transform: translateY(100%);
+  transition: all 0.3s ease-in-out;
 }
 .showcase__close{
   @include abs-pos($top: -10px, $right: 15px);
@@ -64,12 +92,12 @@
   margin: 30px 0px;
   text-transform: uppercase;
   width: 80%;
-  transition: background 0.7s ease-in;
+  transition: background 0.3s ease-in;
 
   &:before{
     background: #109f9a url(../img/visit.png) center center no-repeat;
     content: "";
-    padding: 17px 27px;
+    padding: 16px 27px;
     margin-right: 15px;
     box-shadow: 2px 0px 2px #0a5956;
   }
@@ -79,9 +107,7 @@
     transition: background 0.4s ease-out;
   }
 }
-.works{
 
-}
 .works__list{
 
 }
@@ -92,16 +118,17 @@
   float: left;
   border: 1px solid #737373;
   padding: 10px;
-  transition: background 1s ease-out;
+  position: relative;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(100px);
 
   &:hover{
     background: #109f9a;
-    transition: all 1s ease-out;
+    transition: background 0.5s ease-out;
   }
 }
-.works__link{
-  
-}
+
 .thumb{
   overflow: hidden;
   background: url(../img/showcase-bg.png) repeat;
@@ -117,4 +144,9 @@
   &:hover{
     transition: all 0.4s ease-out;
   }
+}
+
+.show{
+  opacity: 1;
+  transform: translateX(0px);
 }

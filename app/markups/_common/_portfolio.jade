@@ -10,12 +10,14 @@ section.portfolio#portfolio
         .medium-12.columns
           a.showcase__close#close
             img(src="img/close.jpg", alt="close-button")
-          .showcase__content.columns.medium-7
-            img(src="./img/shop.jpg").showcase__img
+          figure.showcase__content.columns.medium-7
+            a(href="").link
+              img(src="").showcase__img#img
+              figcapture.showcase__figcapture#figcapture
           .columns.medium-4
-            h3.work-title Shop
-            p.work-text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur voluptates obcaecati distinctio dignissimos, dicta dolorum molestiae illo numquam, nam, esse minus. Eius magni dolorem fugiat commodi totam, sint illo incidunt?
-            a.visit-btn Visit site
+            h3.work-title#title
+            p.work-text#text
+            a(href="").visit-btn.link Visit site
   .row.works
     .medium-12.columns
       ul.works__list
@@ -24,14 +26,14 @@ section.portfolio#portfolio
             .thumb
               img(src="./img/shop-thumb.png", alt="shop-thumb").thumb__img
         li.works__item
-          a(href="").works__link
+          a(href="#ipadApps").works__link
             .thumb
               img(src="", alt="").thumb__img
         li.works__item
-          a(href="").works__link
+          a(href="#ostrov").works__link
             .thumb
               img(src="", alt="").thumb__img
         li.works__item
-          a(href="").works__link
+          a(href="#generator").works__link
             .thumb
               img(src="", alt="").thumb__img

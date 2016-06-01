@@ -1,12 +1,12 @@
 {
-  "name": "testwork",
+  "name": "portfolio",
   "description": "",
   "main": "index.js",
   "authors": [
     "Anton <toxa.simply@google.com>"
   ],
   "license": "ISC",
-  "homepage": "https://github.com/simplytoxa/testwork",
+  "homepage": "https://github.com/simplytoxa/portfolio",
   "moduleType": [],
   "ignore": [
     "**/.*",
