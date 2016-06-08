@@ -21,3 +21,10 @@
   color: #737373;
   @include font-size(18);
 }
+
+.about__column-1{
+  transform: translate(100px, 20px);
+}
+.about__column-2{
+  transform: translate(-100px, 20px);
+}

@@ -77,6 +77,7 @@
         wHeight = $(window).height(),
         img = $('.intro__img-wrap'),
         imgTop = img.offset().top,
+        aboutBlockTop = $('.about__container').offset().top,
         bagBottomEdge = 237;
 
     /*
@@ -94,7 +95,7 @@
     }
 
     /*
-    * Parallax effect
+    * Parallax effects
     */
     if (wScroll > imgTop) {
       // Bag moving
@@ -121,7 +122,24 @@
       $('.phone').css({
         'transform': 'translate(0, ' + -(wScroll - imgTop)/12 + 'px)'
       });
+    }
 
+    /*
+    * About section floating columns
+    */
+    if (wScroll > aboutBlockTop - wHeight) {
+      var col1 = $('.about__column-1'),
+          col2 = $('.about__column-2'),
+          offset = Math.min(0, wScroll - aboutBlockTop + wHeight - 500);
+
+
+      col1.css({
+        'transform': 'translate(' + offset + 'px, ' + Math.abs(offset*0.4) + 'px)'
+      });
+
+      col2.css({
+        'transform': 'translate(' + Math.abs(offset) + 'px, '+ Math.abs(offset*0.4) + 'px)'
+      });
     }
   };
 

@@ -9,4 +9,5 @@
 
 .footer__content{
   color: white;
+  @include font-size(16);
 }
