@@ -88,6 +88,7 @@
 .form{
   font-family: 'Dosis', sans-serif;
   color: #737373;
+  transform: translateY(200px);
 }
 .form__label{
   @include font-size(16);
@@ -152,4 +153,25 @@
 .empty-field{
   border-color: #f00;
   background-color: rgba(255, 224, 224, 0.9);
+}
+
+
+
+// Animation
+.animate-top{
+  transform: translateY(-100px);
+  transition: all 0.5s ease-in-out;
+}
+
+.animate-back{
+  transform: translateY(0px) rotate(5deg) scale(1.2);
+  transition: all 0.5s ease-in-out;
+}
+.animate-rotation{
+  transform: rotate(-5deg) scale(1);
+  transition: all 0.5s ease-in-out;
+}
+.animate-rotation-back{
+  transform: rotate(0deg) scale(1);
+  transition: all 0.5s ease-in-out;
 }

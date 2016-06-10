@@ -78,6 +78,8 @@
         img = $('.intro__img-wrap'),
         imgTop = img.offset().top,
         aboutBlockTop = $('.about__container').offset().top,
+        form = $('#form'),
+        formTop = form.offset().top,
         bagBottomEdge = 237;
 
     /*
@@ -140,6 +142,28 @@
       col2.css({
         'transform': 'translate(' + Math.abs(offset) + 'px, '+ Math.abs(offset*0.4) + 'px)'
       });
+    }
+
+
+    /*
+    * Effects for form
+    */
+    if (wScroll > formTop - wHeight - 150) {
+
+        form.addClass('animate-top');
+
+      setTimeout(function() {
+        form.addClass('animate-back');
+      }, 500);
+
+      setTimeout(function() {
+        form.addClass('animate-rotation');
+      }, 1000);
+
+      setTimeout(function() {
+        form.addClass('animate-rotation-back');
+      }, 1500);
+      
     }
   };
 
