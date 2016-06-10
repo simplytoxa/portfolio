@@ -117,10 +117,9 @@ gulp.task('minifyCss', function() {
   return gulp.src(path.build.cssoSrc)
       .pipe(csso({
           restructure: false,
-          sourceMap: true,
+          sourceMap: false,
           debug: true
       }))
-      .pipe(rename({suffix: ".min"}))
       .pipe(gulp.dest('./build/css/'));
 });
 
@@ -144,7 +143,7 @@ gulp.task('scripts', function() {
       .pipe(browserify({
         debug : true // Maps
       })).on('error', notify.onError())
-      .pipe(rename('bundle.min.js'))
+      .pipe(rename('bundle.js'))
       .pipe(gulp.dest(path.browserifyDest));
 });
 
@@ -177,7 +176,7 @@ gulp.task('serve', function() {
     server: "app/"
   });
 
-  browserSync.watch(['./app/js/bundle.min.js', './app/**/*.html', '!**/*.scss', './app/img/icons/'], browserSync.reload);
+  browserSync.watch(['./app/js/bundle.js', './app/**/*.html', '!**/*.scss', './app/img/icons/'], browserSync.reload);
 });
 
 // =============================================
