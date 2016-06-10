@@ -8,30 +8,30 @@
       shop = {
         imgSrc: './img/shop.jpg',
         title: 'Shop',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur voluptates obcaecati distinctio dignissimos, dicta dolorum molestiae illo numquam, nam, esse minus. Eius magni dolorem fugiat commodi totam, sint illo incidunt?',
+        text: 'This is an example of internet shop. There is a possibility to change view of displayed goods. Created with the help of Jade, SCSS, Jquery',
         link: 'http://shop.apnweb.ru/',
         figcapture: 'Shop'
       },
       generator = {
         imgSrc: './img/generator.jpg',
         title: 'Generator',
-        text: 'Это текст рыба!! Это текст рыба!! Это текст рыба!! Это текст рыба!! Это текст рыба!! Это текст рыба!! ',
+        text: "This is a working watermark generator created by me and my freinds. It's in beta version now, and you can try it just now.",
         link: 'http://watermark.unostech.ru/',
         figcapture: 'Generator'
       },
       ipadApps = {
         imgSrc: './img/generator.jpg',
         title: 'Ipad Apps',
-        text: 'Это текст рыба!! Это текст рыба!! Это текст рыба!! Это текст рыба!! Это текст рыба!! Это текст рыба!! ',
+        text: 'This is an example page for shop that sells applications for IPads.',
         link: 'http://apps.apnweb.ru/',
         figcapture: 'Ipad Apps'
       },
-      ostrov = {
-        imgSrc: './img/generator.jpg',
-        title: 'Ostrov',
-        text: 'Это текст рыба!! Это текст рыба!! Это текст рыба!! Это текст рыба!! Это текст рыба!! Это текст рыба!! ',
+      iso = {
+        imgSrc: './img/iso-mss.jpg',
+        title: 'International Certification System',
+        text: 'This is a future working page for certificates selling shop.',
         link: 'http://watermark.unostech.ru/',
-        figcapture: 'Ostrov'
+        figcapture: 'International Certification System'
       };
 
   publicMethod();
@@ -70,8 +70,8 @@
     else if(click.attr('href') === '#generator') {
       addValues(generator);
     }
-    else if(click.attr('href') === '#ostrov') {
-      addValues(ostrov);
+    else if(click.attr('href') === '#iso') {
+      addValues(iso);
     }
     else if(click.attr('href') === '#ipadApps') {
       addValues(ipadApps);

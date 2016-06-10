@@ -1,8 +1,10 @@
 .header{
   @extend %clearfix;
   font-family: 'Dosis', sans-serif;
-  margin-bottom: 200px;
-  background: url('../img/bg.png') repeat;
+  padding-bottom: 200px;
+  background: url("../img/bg.png") repeat !important;
+  position: relative;
+  z-index: 2;
 }
 .menu{
   margin-top: 10px;
@@ -76,8 +78,15 @@
 
 .logo{
   @extend .medium-2, .columns;
+  height: 100px;
+  width: 100px;
+  background: #3a3a3a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
 }
-
 .menu-right__item{
   @extend .menu-left__item;
   float: left;

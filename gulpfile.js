@@ -117,7 +117,7 @@ gulp.task('minifyCss', function() {
   return gulp.src(path.build.cssoSrc)
       .pipe(csso({
           restructure: false,
-          sourceMap: true,
+          sourceMap: false,
           debug: true
       }))
       .pipe(rename({suffix: ".min"}))
@@ -144,7 +144,7 @@ gulp.task('scripts', function() {
       .pipe(browserify({
         debug : true // Maps
       })).on('error', notify.onError())
-      .pipe(rename('bundle.min.js'))
+      .pipe(rename('bundle.js'))
       .pipe(gulp.dest(path.browserifyDest));
 });
 
@@ -154,6 +154,7 @@ gulp.task('scripts', function() {
 gulp.task('js:compress', function() {
   return gulp.src(path.build.compressedSrc)
     .pipe(uglify())
+    .pipe(rename({suffix: ".min"}))
     .pipe(gulp.dest(path.build.compressedJS));
 });
 

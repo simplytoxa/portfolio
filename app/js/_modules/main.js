@@ -1,6 +1,7 @@
 ;(function() {
   var mainModule = {},
-      toTopBtn = $('#back-to-top');
+      toTopBtn = $('#back-to-top'),
+      logo = $('.logo-img');
 
   publicMethod();
   init();
@@ -14,6 +15,10 @@
       callback: introText2
     });
   
+    logo.css({
+      'transform': 'rotate(360deg)',
+      'transition': 'all 0.5s ease-in-out'
+    });
   };
 
   function attachEvents() {
