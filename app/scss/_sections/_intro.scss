@@ -56,14 +56,14 @@
   overflow: hidden;
 }
 .img{
-  background: url('/img/workflow.jpg') center center no-repeat;
+  background: url('../img/workflow.jpg') center center no-repeat;
   background-size: cover;
   // background-attachment: fixed;
   width: 100%;
   height: 680px;
 }
 .bag{
-  background: url('/img/bag.png') left top no-repeat;
+  background: url('../img/bag.png') left top no-repeat;
   width: 100%;
   height: 152px;
   position: absolute;
@@ -71,7 +71,7 @@
   left: 85px;
 }
 .boots{
-  background: url('/img/boots.png') center right no-repeat;
+  background: url('../img/boots.png') center right no-repeat;
   width: 100%;
   height: 137px;
   position: absolute;
@@ -79,7 +79,7 @@
   right: 0;
 }
 .phone{
-  background: url('/img/phone.png') left bottom no-repeat;
+  background: url('../img/phone.png') left bottom no-repeat;
   width: 100%;
   height: 86px;
   position: absolute;
@@ -87,7 +87,7 @@
   left: 305px;
 }
 .pencil{
-  background: url('/img/pencil.png') center bottom no-repeat;
+  background: url('../img/pencil.png') center bottom no-repeat;
   width: 100%;
   height: 86px;
   position: absolute;

@@ -1,204 +1,182 @@
 'use strict';
 
-var gulp            = require('gulp'),
-    browserSync     = require('browser-sync').create(),
-    jade            = require('gulp-jade'),
-    sass            = require('gulp-sass'),
-    sourcemaps      = require('gulp-sourcemaps'),
-    browserify      = require('gulp-browserify'),
-    spritesmith     = require('gulp.spritesmith'),
-    rename          = require('gulp-rename'),
-    eslint          = require('gulp-eslint'),
-    autoprefixer    = require('autoprefixer'),
-    postcss         = require('gulp-postcss'),
-    notify          = require("gulp-notify"),
-    csso            = require('gulp-csso'),
-    del             = require('del'),
-    uglify          = require('gulp-uglify'),
-    sassGlob        = require('gulp-sass-glob'),
-    merge           = require('merge-stream'),
+const gulp          = require('gulp'),
+      browserSync   = require('browser-sync').create(),
+      merge         = require('merge-stream'),
+      del           = require('del'),
+      $             = require('gulp-load-plugins')({
+          lazy: true
+      }),
 
     path = {
-      html: 'app/*.html',
-      css:  'app/**/*.css',
-      js: 'app/js/_modules/*.js',
-      jade: 'app/markups/**/*.jade',
-      jadeSrc: 'app/markups/_pages/*.jade',
-      jadeDest: 'app/',
-      sassSrc: 'app/scss/**/*.scss',
-      sassDest: 'app/css/',
-      browserifySrc: './app/js/entry.js',
-      browserifyDest:'./app/js/',
-      sprite: {
-        spritesSrc: 'app/img/icons/*.png',
-        spriteImgDest: './app/img/',
-        spriteStylesDest: './app/scss/_layout/'
-      },
-      build: {
-        cssoSrc: 'build/css/main.css',
-        compressedSrc: './app/js/bundle.js',
-        compressedJS: 'build/js/'
-      }
+        html: 'app/*.html',
+        css:  'app/**/*.css',
+        jsSrc: 'app/js/*.js',
+        jsDest:'build/js/',
+        pug: 'app/markups/**/*.pug',
+        pugSrc: 'app/markups/_pages/*.pug',
+        pugDest: 'build/',
+        sassSrc: 'app/scss/**/*.scss',
+        sassDest: 'build/css/',
+        sprite: {
+            spritesSrc: 'app/img/icons/*.png',
+            spriteImgDest: './build/img/',
+            spriteStylesDest: './app/scss/_layout/'
+        }
     };
 
 // =============================================
-// === JADE
+// === Pug
 // =============================================
-gulp.task('jade', function() {
-  var YOUR_LOCALS = {};
- 
-  return gulp.src(path.jadeSrc)
-      .pipe(jade({
-        locals: YOUR_LOCALS,
-        pretty: '\t'
-      })).on('error', notify.onError()).on('change', browserSync.reload)
-      .pipe(gulp.dest(path.jadeDest));
+gulp.task('pug', () => {
+    let YOUR_LOCALS = {};
+
+    return gulp.src(path.pugSrc)
+        .pipe($.plumber({
+            errorHandler: $.notify.onError((err) => {
+                return {
+                    title: 'Pug',
+                    message: err.message
+                };
+            })
+        }))
+        .pipe($.pug({
+            locals: YOUR_LOCALS,
+            pretty: '\t'
+        })).on('change', browserSync.reload)
+        .pipe(gulp.dest(path.pugDest));
 });
 
 // =============================================
 // === Sass
 // =============================================
-gulp.task('sass', function() {
-  return gulp.src(path.sassSrc)
-      .pipe(sourcemaps.init())
-      .pipe(sassGlob())
-      .pipe(sass()).on('error', notify.onError())
-      .pipe(sourcemaps.write())
-      .pipe(gulp.dest(path.sassDest))
-      .pipe(browserSync.stream());
+gulp.task('sass', () => {
+    return gulp.src(path.sassSrc)
+        .pipe($.plumber({
+            errorHandler: $.notify.onError((err) => {
+                return {
+                    title: 'Styles',
+                    message: err.message
+                };
+            })
+        }))
+        .pipe($.sourcemaps.init())
+        .pipe($.sassGlob())
+        .pipe($.sass())
+        .pipe($.autoprefixer({
+            browsers: ['last 3 version', '> 1%', 'ie 8', 'ie 9', 'Opera 12.1'],
+            cascade: false
+        }))
+        .pipe($.csso({
+            restructure: false,
+            sourceMap: true
+        }))
+        .pipe($.sourcemaps.write())
+        .pipe(gulp.dest(path.sassDest))
+        .pipe(browserSync.stream());
 });
 
 // =============================================
 // === Sprites
 // =============================================
-gulp.task('sprites', function() {
-  var spriteData =
-      gulp.src(path.sprite.spritesSrc)
-          .pipe(spritesmith({
-            imgName: 'sprite.png',
-            cssName: 'sprite.scss',
-            algorithm: 'binary-tree',
-            imgPath: '../../img/sprite.png', // path in mixins
-            cssOpts: {functions: false},
-            padding: 20
-          }));
-  var imgDest = spriteData.img.pipe(gulp.dest(path.sprite.spriteImgDest)); // path where to save the sprite-img
-  var cssDest = spriteData.css.pipe(rename({prefix: "_"}))
-                .pipe(gulp.dest(path.sprite.spriteStylesDest)); // path where to save the styles
-  return merge(imgDest, cssDest);
+gulp.task('sprites', () => {
+    let spriteData =
+            gulp.src(path.sprite.spritesSrc, {since: gulp.lastRun('sprites')})
+                .pipe($.spritesmith({
+                    imgName: 'sprite.png',
+                    cssName: 'sprite.scss',
+                    algorithm: 'binary-tree',
+                    imgPath: '../../img/sprite.png', // path in mixins
+                    cssOpts: {functions: false},
+                    padding: 20
+                })),
+        imgDest = spriteData.img.pipe(gulp.dest(path.sprite.spriteImgDest)), // path where to save the sprite-img
+        cssDest = spriteData.css.pipe($.rename({prefix: "_"}))
+            .pipe(gulp.dest(path.sprite.spriteStylesDest)); // path where to save the styles
+
+    return merge(imgDest, cssDest);
 });
 
 // =============================================
 // === Eslint
 // =============================================
-gulp.task('lint', function() {
-    
+gulp.task('lint', () => {
+
     return gulp.src(['./js/**/*.js','!node_modules/**'])
-        .pipe(eslint()) 
-        .pipe(eslint.format()) 
-        .pipe(eslint.failAfterError());
+        .pipe($.eslint())
+        .pipe($.eslint.format())
+        .pipe($.eslint.failAfterError());
 });
 
 // =============================================
-// === Autoprefixer
+// === JS
 // =============================================
-gulp.task('autoprefixer', function () { 
-    return gulp.src('./app/css/main.css')
-        .pipe(sourcemaps.init())
-        .pipe(postcss([ autoprefixer({ browsers: ['last 3 version', '> 1%', 'ie 8', 'ie 9', 'Opera 12.1'] }) ]))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./build/css'));
+gulp.task('script', () => {
+
+    return gulp.src(path.jsSrc)
+        .pipe($.plumber({
+            errorHandler: $.notify.onError((err) => {
+                return {
+                    title: 'JAVASCRIPT',
+                    message: err.message
+                };
+            })
+        }))
+        .pipe($.sourcemaps.init())
+        .pipe($.concat('bundle.js'))
+        .pipe($.babel({
+            presets: ['es2015']
+        }))
+        .pipe($.uglify())
+        .pipe($.sourcemaps.write())
+        .pipe(gulp.dest(path.jsDest));
 });
 
-// =============================================
-// === CSSO
-// =============================================
-gulp.task('minifyCss', function() {
-  return gulp.src(path.build.cssoSrc)
-      .pipe(csso({
-          restructure: false,
-          sourceMap: false,
-          debug: true
-      }))
-      .pipe(gulp.dest('./build/css/'));
-});
-
-// =============================================
-// === Clean files that are not minified
-// =============================================
-gulp.task('clean', function () {
-  return del([
-    './build/css/main.css',
-    '!./build/js/bundle.min.js',
-    '!./build/css/main.min.css'
-  ]);
-});
-
-// =============================================
-// === Browserify JS
-// =============================================
-gulp.task('scripts', function() {
-  return gulp.src(path.browserifySrc)
-
-      .pipe(browserify({
-        debug : true // Maps
-      })).on('error', notify.onError())
-      .pipe(rename('bundle.js'))
-      .pipe(gulp.dest(path.browserifyDest));
-});
-
-// =============================================
-// === Compress JS
-// =============================================
-gulp.task('js:compress', function() {
-  return gulp.src(path.build.compressedSrc)
-    .pipe(uglify())
-    .pipe(gulp.dest(path.build.compressedJS));
-});
 
 // =============================================
 // === Replacing files for build
 // =============================================
-gulp.task('replaceFiles', function() {
-  var imgs = gulp.src('app/img/*.*').pipe(gulp.dest('build/img/'));
-  var bower = gulp.src('app/bower/**/*.*').pipe(gulp.dest('build/bower'));
+gulp.task('replaceFiles', () => {
+    let imgs = gulp.src('app/img/*.*', {since: gulp.lastRun('replaceFiles')}).pipe(gulp.dest('build/img/')),
+        fonts = gulp.src('app/fonts/*.*', {since: gulp.lastRun('replaceFiles')}).pipe(gulp.dest('build/fonts/')),
+        fav = gulp.src('app/favicon.ico/*.*', {since: gulp.lastRun('replaceFiles')}).pipe(gulp.dest('build/favicon.ico/')),
+        php = gulp.src('app/php/*.*').pipe(gulp.dest('build/php/'));
 
-  return merge(imgs, bower);
+    return merge(imgs, fonts, fav, php);
 });
 
 // =============================================
 // === Static Server
 // =============================================
-gulp.task('serve', function() {
+gulp.task('serve', () => {
 
-  browserSync.init({
-    port: 9000,
-    server: "app/"
-  });
+    browserSync.init({
+        port: 9001,
+        server: "build/"
+    });
 
-  browserSync.watch(['./app/js/bundle.js', './app/**/*.html', '!**/*.scss', './app/img/icons/'], browserSync.reload);
+    browserSync.watch(['./build/js/bundle.js', './build/**/*.html', '!**/*.scss', path.sprite.spriteImgDest], browserSync.reload);
 });
 
 // =============================================
 // === Watching
 // =============================================
-gulp.task('watch', function() {
-  gulp.watch(path.jade, gulp.series('jade'));
-  gulp.watch(path.sassSrc, gulp.series('sass'));
-  gulp.watch(path.js, gulp.series('scripts', 'lint'));
-  gulp.watch(path.sprite.spritesSrc, gulp.parallel('sprites'));
+gulp.task('watch', () => {
+    gulp.watch(path.pug, gulp.series('pug'));
+    gulp.watch(path.sassSrc, gulp.series('sass'));
+    gulp.watch(path.jsSrc, gulp.series('script', 'lint'));
+    gulp.watch(path.sprite.spritesSrc, gulp.series('sprites'));
+});
+
+// =============================================
+// === Clean All Build Directory
+// =============================================
+gulp.task('clean', () => {
+    return del(['./build/']);
 });
 
 // =============================================
 // === Default
 // =============================================
-gulp.task('default', gulp.series('jade', 'sass', 'scripts', 'sprites', gulp.parallel('watch', 'serve')));
-
-
-
-
-// =============================================
-// === Build (for production)
-// =============================================
-gulp.task('build', gulp.series('replaceFiles', 'autoprefixer', 'minifyCss', 'js:compress', 'clean'));
+gulp.task('default', gulp.series('pug', 'sass', 'script', 'sprites', 'replaceFiles', gulp.parallel('watch', 'serve')));
 

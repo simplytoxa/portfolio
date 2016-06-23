@@ -11,21 +11,25 @@ section.contact#contact
             span.envelope__ampersand &
           .envelope__title-sub Find me on social networks
         .medium-10.small-centered.socials
-          - var socials = {envelope: 'mailto: toxa.simply@gmail.com', vk: 'https://new.vk.com/simplytoxa', github: 'https://github.com/simplytoxa'}
-          +socials(socials)
+          - var contacts = {envelope: 'mailto: toxa.simply@gmail.com', vk: 'https://new.vk.com/simplytoxa', github: 'https://github.com/simplytoxa'};
+            +socials(contacts)
         .envelope__note
           | Always interested in new projects, Just Send me an email and I'll get back to your inquiry ASAP.
     .medium-6.columns
       form(action="", id="form").form
         .input-wrap
           label(for="name").form__label Name
-          input(type="text", id="name", placeholder="Enter your name", data-tooltip="How can I call You?").form__input
+          input(type="text", id="name", placeholder="Enter your name", data-tooltip="How can I call You?", name="name").form__input
         .input-wrap
           label(for="email").form__label Email
-          input(type="email", id="email", placeholder="Enter your email" data-tooltip="What about Email?").form__input
+          input(type="email", name="email", id="email", placeholder="Enter your email" data-tooltip="What about Email?").form__input
         .input-wrap
-          label(for="message").form__label Message
-          textarea(name="message", cols="30", rows="10", id="textarea" form="form" placeholder="I'm waiting for some words from you..." data-tooltip="I'm waiting for your message...").form__textarea
+          label(for="textarea").form__label Message
+          textarea(name="textarea", cols="30", rows="10", id="textarea", form="form", placeholder="I'm waiting for some words from you...", data-tooltip="I'm waiting for your message...").form__textarea
         button(type="submit", name="button", form="form").form__btn.form__btn-submit Send
         button(type="reset", name="button", form="form").form__btn.form__btn-reset Reset
+        .recap
+          .g-recaptcha(data-sitekey='6LcwZSMTAAAAACdcJedEsKKouV-Y8f2LzcxGRXma', data-theme="dark")
+        .success
+          .success-text Thanks for your message!) I'm really appreciate this.
 
