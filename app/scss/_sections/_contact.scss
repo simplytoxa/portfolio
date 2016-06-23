@@ -177,3 +177,19 @@
   transform: rotate(0deg) scale(1);
   transition: all 0.5s ease-in-out;
 }
+
+
+// Success window
+.success{
+  @include absolute-center;
+  width: 200px;
+  height: 100px;
+  background: palegreen;
+  border-radius: 5px;
+  border: 2px solid black;
+  display: none;
+}
+.success-text{
+  color: black;
+  margin-top: 20px;
+}

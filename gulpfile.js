@@ -1,58 +1,53 @@
 'use strict';
 
-var gulp            = require('gulp'),
-    browserSync     = require('browser-sync').create(),
-    jade            = require('gulp-jade'),
-    sass            = require('gulp-sass'),
-    sourcemaps      = require('gulp-sourcemaps'),
-    browserify      = require('gulp-browserify'),
-    spritesmith     = require('gulp.spritesmith'),
-    rename          = require('gulp-rename'),
-    eslint          = require('gulp-eslint'),
-    autoprefixer    = require('autoprefixer'),
-    postcss         = require('gulp-postcss'),
-    notify          = require("gulp-notify"),
-    csso            = require('gulp-csso'),
-    del             = require('del'),
-    uglify          = require('gulp-uglify'),
-    sassGlob        = require('gulp-sass-glob'),
-    merge           = require('merge-stream'),
+const gulp          = require('gulp'),
+      browserSync   = require('browser-sync').create(),
+      pug           = require('gulp-pug'),
+      sass          = require('gulp-sass'),
+      sourcemaps    = require('gulp-sourcemaps'),
+      spritesmith   = require('gulp.spritesmith'),
+      rename        = require('gulp-rename'),
+      eslint        = require('gulp-eslint'),
+      autoprefixer  = require('autoprefixer'),
+      postcss       = require('gulp-postcss'),
+      notify        = require("gulp-notify"),
+      csso          = require('gulp-csso'),
+      uglify        = require('gulp-uglify'),
+      sassGlob      = require('gulp-sass-glob'),
+      merge         = require('merge-stream'),
+      babel         = require("gulp-babel"),
+      concat        = require('gulp-concat'),
 
-    path = {
-      html: 'app/*.html',
-      css:  'app/**/*.css',
-      js: 'app/js/_modules/*.js',
-      jade: 'app/markups/**/*.jade',
-      jadeSrc: 'app/markups/_pages/*.jade',
-      jadeDest: 'app/',
-      sassSrc: 'app/scss/**/*.scss',
-      sassDest: 'app/css/',
-      browserifySrc: './app/js/entry.js',
-      browserifyDest:'./app/js/',
-      sprite: {
-        spritesSrc: 'app/img/icons/*.png',
-        spriteImgDest: './app/img/',
-        spriteStylesDest: './app/scss/_layout/'
-      },
-      build: {
-        cssoSrc: 'build/css/main.css',
-        compressedSrc: './app/js/bundle.js',
-        compressedJS: 'build/js/'
-      }
-    };
+      path = {
+        html: 'app/*.html',
+        css:  'app/**/*.css',
+        jsSrc: 'app/js/*.js',
+        jsDest:'build/js/',
+        pug: 'app/markups/**/*.pug',
+        pugSrc: 'app/markups/_pages/*.pug',
+        pugDest: 'build/',
+        sassSrc: 'app/scss/**/*.scss',
+        sassDest: 'build/css/',
+        php:'app/php/**/*.php',
+        sprite: {
+          spritesSrc: 'app/img/icons/*.png',
+          spriteImgDest: './build/img/',
+          spriteStylesDest: './app/scss/_layout/'
+        }
+      };
 
 // =============================================
-// === JADE
+// === Pug
 // =============================================
-gulp.task('jade', function() {
-  var YOUR_LOCALS = {};
+gulp.task('pug', function() {
+  let YOUR_LOCALS = {};
  
-  return gulp.src(path.jadeSrc)
-      .pipe(jade({
+  return gulp.src(path.pugSrc)
+      .pipe(pug({
         locals: YOUR_LOCALS,
         pretty: '\t'
       })).on('error', notify.onError()).on('change', browserSync.reload)
-      .pipe(gulp.dest(path.jadeDest));
+      .pipe(gulp.dest(path.pugDest));
 });
 
 // =============================================
@@ -63,6 +58,12 @@ gulp.task('sass', function() {
       .pipe(sourcemaps.init())
       .pipe(sassGlob())
       .pipe(sass()).on('error', notify.onError())
+      .pipe(postcss([ autoprefixer({ browsers: ['last 3 version', '> 1%', 'ie 8', 'ie 9', 'Opera 12.1'] }) ]))
+      .pipe(csso({
+          restructure: false,
+          sourceMap: false,
+          debug: true
+      }))
       .pipe(sourcemaps.write())
       .pipe(gulp.dest(path.sassDest))
       .pipe(browserSync.stream());
@@ -72,7 +73,7 @@ gulp.task('sass', function() {
 // === Sprites
 // =============================================
 gulp.task('sprites', function() {
-  var spriteData =
+  let spriteData =
       gulp.src(path.sprite.spritesSrc)
           .pipe(spritesmith({
             imgName: 'sprite.png',
@@ -82,8 +83,8 @@ gulp.task('sprites', function() {
             cssOpts: {functions: false},
             padding: 20
           }));
-  var imgDest = spriteData.img.pipe(gulp.dest(path.sprite.spriteImgDest)); // path where to save the sprite-img
-  var cssDest = spriteData.css.pipe(rename({prefix: "_"}))
+  let imgDest = spriteData.img.pipe(gulp.dest(path.sprite.spriteImgDest)); // path where to save the sprite-img
+  let cssDest = spriteData.css.pipe(rename({prefix: "_"}))
                 .pipe(gulp.dest(path.sprite.spriteStylesDest)); // path where to save the styles
   return merge(imgDest, cssDest);
 });
@@ -100,70 +101,33 @@ gulp.task('lint', function() {
 });
 
 // =============================================
-// === Autoprefixer
+// === JS
 // =============================================
-gulp.task('autoprefixer', function () { 
-    return gulp.src('./app/css/main.css')
-        .pipe(sourcemaps.init())
-        .pipe(postcss([ autoprefixer({ browsers: ['last 3 version', '> 1%', 'ie 8', 'ie 9', 'Opera 12.1'] }) ]))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./build/css'));
+gulp.task('script', function() {
+
+  return gulp.src(path.jsSrc)
+          .pipe(sourcemaps.init())
+          .pipe(concat('bundle.js'))
+          .pipe(babel({
+            presets: ['es2015']
+          }))
+          .pipe(uglify())
+          .pipe(sourcemaps.write())
+          .pipe(gulp.dest(path.jsDest))
+          .on('error', notify.onError());
 });
 
-// =============================================
-// === CSSO
-// =============================================
-gulp.task('minifyCss', function() {
-  return gulp.src(path.build.cssoSrc)
-      .pipe(csso({
-          restructure: false,
-          sourceMap: false,
-          debug: true
-      }))
-      .pipe(gulp.dest('./build/css/'));
-});
-
-// =============================================
-// === Clean files that are not minified
-// =============================================
-gulp.task('clean', function () {
-  return del([
-    './build/css/main.css',
-    '!./build/js/bundle.min.js',
-    '!./build/css/main.min.css'
-  ]);
-});
-
-// =============================================
-// === Browserify JS
-// =============================================
-gulp.task('scripts', function() {
-  return gulp.src(path.browserifySrc)
-
-      .pipe(browserify({
-        debug : true // Maps
-      })).on('error', notify.onError())
-      .pipe(rename('bundle.js'))
-      .pipe(gulp.dest(path.browserifyDest));
-});
-
-// =============================================
-// === Compress JS
-// =============================================
-gulp.task('js:compress', function() {
-  return gulp.src(path.build.compressedSrc)
-    .pipe(uglify())
-    .pipe(gulp.dest(path.build.compressedJS));
-});
 
 // =============================================
 // === Replacing files for build
 // =============================================
 gulp.task('replaceFiles', function() {
-  var imgs = gulp.src('app/img/*.*').pipe(gulp.dest('build/img/'));
-  var bower = gulp.src('app/bower/**/*.*').pipe(gulp.dest('build/bower'));
+  let imgs = gulp.src('app/img/*.*', {since: gulp.lastRun('replaceFiles')}).pipe(gulp.dest('build/img/')),
+      fonts = gulp.src('app/fonts/*.*', {since: gulp.lastRun('replaceFiles')}).pipe(gulp.dest('build/fonts/')),
+      fav = gulp.src('app/favicon.ico/*.*', {since: gulp.lastRun('replaceFiles')}).pipe(gulp.dest('build/favicon.ico/')),
+      php = gulp.src('app/php/*.*', {since: gulp.lastRun('replaceFiles')}).pipe(gulp.dest('build/php/'));
 
-  return merge(imgs, bower);
+  return merge(imgs, fonts, fav, php);
 });
 
 // =============================================
@@ -172,33 +136,26 @@ gulp.task('replaceFiles', function() {
 gulp.task('serve', function() {
 
   browserSync.init({
-    port: 9000,
-    server: "app/"
+    port: 9001,
+    server: "build/"
   });
 
-  browserSync.watch(['./app/js/bundle.js', './app/**/*.html', '!**/*.scss', './app/img/icons/'], browserSync.reload);
+  browserSync.watch(['./build/js/bundle.js', './build/**/*.html', '!**/*.scss', './app/img/icons/'], browserSync.reload);
 });
 
 // =============================================
 // === Watching
 // =============================================
 gulp.task('watch', function() {
-  gulp.watch(path.jade, gulp.series('jade'));
+  gulp.watch(path.pug, gulp.series('pug'));
   gulp.watch(path.sassSrc, gulp.series('sass'));
-  gulp.watch(path.js, gulp.series('scripts', 'lint'));
+  gulp.watch(path.jsSrc, gulp.series('script', 'lint'));
   gulp.watch(path.sprite.spritesSrc, gulp.parallel('sprites'));
+  gulp.watch(path.php, gulp.series('replaceFiles'));
 });
 
 // =============================================
 // === Default
 // =============================================
-gulp.task('default', gulp.series('jade', 'sass', 'scripts', 'sprites', gulp.parallel('watch', 'serve')));
-
-
-
-
-// =============================================
-// === Build (for production)
-// =============================================
-gulp.task('build', gulp.series('replaceFiles', 'autoprefixer', 'minifyCss', 'js:compress', 'clean'));
+gulp.task('default', gulp.series('pug', 'sass', 'script', 'sprites', 'replaceFiles', gulp.parallel('watch', 'serve')));
 
