@@ -24,6 +24,6 @@ mixin socials(contacts)
   ul.socials__list
     for val, index in contacts
       li.socials__item
-        a(href='#{val}', class='socials__link_#{index}', target='_blank').socials__link
-          i.fa(aria-hidden='true', class='socials__icon_#{index} fa-#{index}').socials__icon
+        a(href=val, class=`socials__link_${index}`, target='_blank').socials__link
+          i.fa(aria-hidden='true', class=`socials__icon_${index} fa-${index}`).socials__icon
         span.text-hide= index

@@ -1,7 +1,7 @@
-;(function() {
-  var showcaseModule = {},
-      closeBtn = $('#close'),
-      work = $('.works__link'),
+;(() => {
+  let showcaseModule = {},
+      closeBtn = document.querySelector('#close'),
+      worksList = document.querySelector('.works__list'),
       showcase = $('#showcase'),
       innerShowcase = $('#inner-showcase'),
       duration = 300,
@@ -40,64 +40,71 @@
 
   function init() {
     // Some code..functions that are needed for module initialization 
-  };
+  }
 
   function attachEvents() {
-    closeBtn.on('click', closeShowcase);
-    work.on('click', showShowcase);
-  };
+    closeBtn.addEventListener('click', closeShowcase);
+    worksList.addEventListener('click', showShowcase);
+  }
 
   function closeShowcase(e) {
     e.preventDefault();
 
     innerShowcase.slideUp(duration);
     showcase.fadeOut(duration);
-  };
+  }
 
   function showShowcase(e) {
     e.preventDefault();
 
-    var click = $(this),
-        img = $('#img'),
-        title = $('#title'),
-        text = $('#text'),
-        link = $('.link'),
-        figcapture = $('#figcapture');
-    
-    if(click.attr('href') === '#shop') {
+    let click = e.target.parentNode,
+        img = document.querySelector('#img'),
+        title = document.querySelector('#title'),
+        text = document.querySelector('#text'),
+        link = document.querySelectorAll('.link'),
+        figcapture = document.querySelector('#figcapture');
+
+    if (click.className === 'thumb') {
+      click = click.parentNode;
+    }
+
+    if(click.getAttribute('href') === '#shop') {
       addValues(shop);
     }
-    else if(click.attr('href') === '#generator') {
+    else if(click.getAttribute('href') === '#generator') {
       addValues(generator);
     }
-    else if(click.attr('href') === '#iso') {
+    else if(click.getAttribute('href') === '#iso') {
       addValues(iso);
     }
-    else if(click.attr('href') === '#ipadApps') {
+    else if(click.getAttribute('href') === '#ipadApps') {
       addValues(ipadApps);
     }
 
     innerShowcase.fadeIn(duration);
     showcase.slideDown(duration);
 
-    $('html, body').animate({scrollTop: showcase.offset().top}, duration)
+    $('html, body').animate({scrollTop: showcase.offset().top}, duration);
 
     function addValues(obj) {
-      img.attr('src', obj.imgSrc);
-      title.text(obj.title);
-      text.text(obj.text);
-      link.each(function() {
-        link.attr('href', obj.link)
-      });
-      figcapture.text(obj.figcapture)
-    };
-  };
+      console.log(obj);
+      img.setAttribute('src', obj.imgSrc);
+      title.innerHTML = obj.title;
+      text.innerHTML = obj.text;
+
+      for (let i of link) {
+        i.setAttribute('href', obj.link);
+      }
+
+      figcapture.innerHTML = obj.figcapture;
+    }
+  }
 
   function publicMethod() {
     showcaseModule = {
       // name : public function
     }
-  };
+  }
 
   window.showcaseModule = showcaseModule;
 })();

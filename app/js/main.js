@@ -1,5 +1,5 @@
-;(function() {
-  var mainModule = {},
+;(() => {
+  let mainModule = {},
       toTopBtn = $('#back-to-top'),
       logo = $('.logo-img');
 
@@ -19,14 +19,13 @@
       'transform': 'rotate(360deg)',
       'transition': 'all 0.5s ease-in-out'
     });
-  };
-
+  }
   function attachEvents() {
     $(window).on('scroll', showToTopBtn);
     toTopBtn.on('click', scrollToTheTop);
     $('nav.menu').on('click', 'a', anchorScroll);
     $(window).on('scroll', scrollCallback);
-  };
+  }
 
   function introText2() {
     $('.intro__text2').typed({
@@ -36,8 +35,7 @@
       showCursor: false,
       callback: introText3
      });
-  };
-  
+  }
 
   function introText3() {
     $('.intro__text3').typed({
@@ -45,38 +43,38 @@
       showCursor: false,
       typeSpeed: 50
      });
-  };
+  }
 
   function showToTopBtn() {
-    var scrollTop = $(window).scrollTop();
+    let scrollTop = $(window).scrollTop();
 
     if (scrollTop > 900) {
       toTopBtn.fadeIn(600);
     } else {
       toTopBtn.fadeOut(600);
     }
-  };
+  }
 
   function scrollToTheTop(e) {
     e.preventDefault();
 
-    var head = $('#head'),
+    let head = $('#head'),
         top = head.offset().top;
 
     $('html, body').animate({scrollTop: top}, 700);
-  };
+  }
 
   function anchorScroll(e) {
     e.preventDefault();
 
-    var id = $(this).attr('href'),
+    let id = $(this).attr('href'),
         top = $(id).offset().top;
 
     $('html, body').animate({scrollTop: top}, 700);
-  };
+  }
 
   function scrollCallback() {
-    var item = $('.works__item'),
+    let item = $('.works__item'),
         itemTop = item.offset().top,
         wScroll = $(window).scrollTop(),
         wHeight = $(window).height(),
@@ -85,7 +83,8 @@
         aboutBlockTop = $('.about__container').offset().top,
         form = $('#form'),
         formTop = form.offset().top,
-        bagBottomEdge = 237;
+        bagBottomEdge = 237.,
+        bag = $('.bag');
 
     /*
      * The appearence of works block
@@ -106,11 +105,12 @@
     */
     if (wScroll > imgTop) {
       // Bag moving
-      $('.bag').css({
+      bag.css({
         'transform': 'translate(0, ' + (wScroll - imgTop) + 'px)'
       });
+
       if (wScroll > imgTop + bagBottomEdge) {
-        $('.bag').css({
+        bag.css({
           'transform': 'translate(0, ' + bagBottomEdge + 'px)'
         });
       }
@@ -135,7 +135,7 @@
     * About section floating columns
     */
     if (wScroll > aboutBlockTop - wHeight) {
-      var col1 = $('.about__column-1'),
+      let col1 = $('.about__column-1'),
           col2 = $('.about__column-2'),
           offset = Math.min(0, wScroll - aboutBlockTop + wHeight - 500);
 
@@ -170,13 +170,13 @@
       }, 1500);
       
     }
-  };
+  }
 
   function publicMethod() {
     mainModule = {
       
     }
-  };
+  }
 
   window.mainModule = mainModule;
 })();

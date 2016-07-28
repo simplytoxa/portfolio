@@ -109,7 +109,7 @@
 }
 
 .works__list{
-
+  @extend %clearfix;
 }
 .works__item{
   height: 190px;
