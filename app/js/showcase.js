@@ -87,7 +87,6 @@
     $('html, body').animate({scrollTop: showcase.offset().top}, duration);
 
     function addValues(obj) {
-      console.log(obj);
       img.setAttribute('src', obj.imgSrc);
       title.innerHTML = obj.title;
       text.innerHTML = obj.text;

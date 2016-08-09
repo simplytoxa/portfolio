@@ -139,6 +139,7 @@
   border-radius: 5px;
   text-transform: uppercase;
   transition: all 0.2s ease-in-out;
+  outline: none;
 
   &:hover{
     box-shadow: 7px 11px 7px rgba(1, 1, 1, 0.5);
