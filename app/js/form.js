@@ -35,9 +35,7 @@
 
       if (trimedValue === '') {
         fieldParent.append(
-          '<div class="tooltip-wrap">\
-            <div class="tooltip">' + tooltipTxt + '</div>\
-          </div>');
+          '<div class="tooltip-wrap"><div class="tooltip">' + tooltipTxt + '</div></div>');
 
         that.addClass('empty-field');
 
@@ -45,7 +43,9 @@
       }
     });
 
-    if (!valid) return false;
+    if (!valid) {
+      return false
+    }
     
     $.ajax({
       url: url,
@@ -58,12 +58,6 @@
       setTimeout(function() {
         success.fadeOut('slow');
       }, 3000);
-    })
-    .fail(function() {
-      console.log('error');
-    })
-    .always(function() {
-      console.log('complete');
     });
 
 }

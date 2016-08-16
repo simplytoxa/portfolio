@@ -140,6 +140,8 @@
 .thumb__img{
   transition: all 0.4s ease-out;
   @include absolute-center();
+  max-height: 200px;
+  max-width: 160px;
 
   &:hover{
     transition: all 0.4s ease-out;
