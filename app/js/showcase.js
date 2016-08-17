@@ -15,7 +15,7 @@
       generator = {
         imgSrc: './img/generator.jpg',
         title: 'Generator',
-        text: "This is a working watermark generator created by me and my freinds. It's in beta version now, and you can try it just now.",
+        text: "This is a working watermark generator created by me and my friends. It's in beta version now, and you can try it just now.",
         link: 'http://watermark.unostech.ru/',
         figcapture: 'Generator'
       },
@@ -32,6 +32,13 @@
         text: 'This is a future working page for certificates selling shop.',
         link: 'http://simplytoxa.github.io/',
         figcapture: 'International Certification System'
+      },
+      drugofilter = {
+        imgSrc: './img/drugofilter.jpg',
+        title: 'Friends filter',
+        text: 'Filter you friends from VK.',
+        link: 'https://simplytoxa.github.io/drugofilter/',
+        figcapture: 'Friends filter'
       };
 
   publicMethod();
@@ -79,6 +86,9 @@
     }
     else if(click.getAttribute('href') === '#ipadApps') {
       addValues(ipadApps);
+    }
+    else if(click.getAttribute('href') === '#drugofilter') {
+      addValues(drugofilter);
     }
 
     innerShowcase.fadeIn(duration);
