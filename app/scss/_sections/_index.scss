@@ -25,3 +25,10 @@
   position: relative;
   background: url('../img/bg.png') repeat !important;
 }
+
+
+@media screen and (max-width: 630px){
+  .back-to-top{
+    display: none !important;
+  }
+}

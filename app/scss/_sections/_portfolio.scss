@@ -110,6 +110,7 @@
 
 .works__list{
   @extend %clearfix;
+  margin: 0;
 }
 .works__item{
   height: 190px;
@@ -151,4 +152,17 @@
 .show{
   opacity: 1;
   transform: translateX(0px);
+}
+
+
+
+@media screen and (max-width: 600px){
+  .works__list{
+    text-align: center;
+  }
+
+  .works__item{
+    display: inline-block;
+    float: none;
+  }
 }

@@ -94,3 +94,10 @@
   bottom: 200px;
   left: 130px;
 }
+
+
+@media screen and (max-width: 570px){
+  .intro__img-wrap{
+    display: none;
+  }
+}

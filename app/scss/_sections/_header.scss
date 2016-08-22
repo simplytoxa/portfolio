@@ -145,9 +145,10 @@
     display: none;
   }
 }
-@media only screen and (max-width: 950px){
+
+@media only screen and (max-width: 960px){
   .menu-left__item, .menu-right__item{
-    padding: 10px 5px !important;
+    padding: 10px 4px !important;
   }
 }
 @media only screen and (max-width: 767px){
@@ -164,7 +165,7 @@
   }
   .logo{
     text-align: center!important;
-    width: auto !important;
+    margin: 0 auto;
     float: none !important;
   }
 }
